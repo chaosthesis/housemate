@@ -1,0 +1,48 @@
+javac housemate/src/knowledge/engine/*.java housemate/src/knowledge/test/*.java
+java -cp . housemate.src.test.TestDriver inputTriples.nt sampleQuery.nt
+
+============ Output ============
+Starbucks sells Coffee.
+starbucks sells coffee.
+
+Starbucks sells Donuts.
+<null>
+
+Starbucks sells ?.
+starbucks sells coffee.
+starbucks sells cake.
+
+? has_store_location HarvardSquare.
+harvardcoop has_store_location harvardsquare.
+starbucks has_store_location harvardsquare.
+
+Lucy ? ?.
+lucy works_at starbucks.
+lucy plays_sport soccer.
+lucy works_at harvardcoop.
+lucy lives_near harvardsquare.
+lucy plays_instrument guitar.
+lucy works_with joe.
+lucy has_friend joe.
+lucy likes_to_eat cake.
+
+Joe plays_sport ?.
+joe plays_sport cricket.
+joe plays_sport soccer.
+joe plays_sport hockey.
+
+Lucy plays_sport ?.
+lucy plays_sport soccer.
+
+? plays_sport ?.
+joe plays_sport cricket.
+lucy plays_sport soccer.
+joe plays_sport soccer.
+joe plays_sport hockey.
+
+? sells Coffee.
+starbucks sells coffee.
+harvardcoop sells coffee.
+
+? ? HarvardCoop.
+lucy works_at harvardcoop.

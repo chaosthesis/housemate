@@ -1,0 +1,476 @@
+javac housemate/src/knowledge/engine/*.java housemate/src/housemate/test/*.java
+javac housemate/src/housemate/entitlement/*.java housemate/src/housemate/model/*.java housemate/src/housemate/controller/*.java housemate/src/housemate/test/*.java
+java -cp . housemate.src.housemate.test.TestDriver housemate/data/housesetup_o.txt
+
+============ Output ============
+
+define_permission, user_admin, “user administrator”, “create, update, delete users”
+
+define_permission, control_oven, “control oven”, “full control of oven”
+
+define_permission, control_thermostat, “control thermostat”, “full control of thermostat”
+
+define_permission, control_door, “control door”, “full control of door”
+
+define_permission, control_window, “control window”, “full control of window”
+
+define_role, adult_resident, “adult resident role”, “has all permissions of an adult resident”
+
+define_role, child_resident, “child resident role”, “has all permissions of a child resident”
+
+define_role, admin_role, “admin role”, “has all permissions of an administrator”
+
+add_entitlement_to_role, admin_role, control_thermostat add_entitlement_to_role, admin_role, control_door add_entitlement_to_role, admin_role, control_window
+
+add_entitlement_to_role, adult_resident, control_oven add_entitlement_to_role, adult_resident, control_thermostat add_entitlement_to_role, adult_resident, control_door add_entitlement_to_role, adult_resident, control_window add_entitlement_to_role, child_resident, control_door add_entitlement_to_role, child_resident, control_window
+
+create_user, sam, sam
+
+create_user, jimmy, jimmy
+
+create_user, debra, “debra smart”
+
+add_user_credential, sam, voice_print, --sam--
+
+add_user_credential, jimmy, voice_print, --jimmy--
+
+add_user_credential, debra, password, secret
+
+add_role_to_user debra, admin_role
+
+create_resource_role, house1_child_resident, child_resident, house1
+
+create_resource_role, house1_adult_resident, adult_resident, house1
+
+​# add resource role to user
+
+add_resource_role_to_user, sam, house1_adult_resident
+
+add_resource_role_to_user, jimmy, house1_child_resident
+
+login admin password admin
+admin login at: 2018.11.14.23.51.02
+
+define house house1 address “1 story street, cambridge, ma”
+
+define house house2 address “33 church steet, cambridge, ma”
+
+define room kitchen floor 1 type kitchen house house1 windows 2
+
+define room livingroom floor 1 type livingroom house house1 windows 4
+
+define room bedroom1 floor 2 type bedroom house house1 windows 3
+
+define room bedroom2 floor 2 type bedroom house house1 windows 2
+
+define room bathroom1 floor 1 type bathroom house house1 windows 0
+
+define room bathroom2 floor 2 type bathroom house house1 windows 1
+
+define room kitchen floor 1 type kitchen house house2 windows 1
+
+define room livingroom floor 1 type livingroom house house2 windows 2
+
+define room diningroom floor 1 type diningroom house house2 windows 2
+
+define room bedroom1 floor 2 type bedroom house house2 windows 4
+
+define room bedroom2 floor 2 type bedroom house house2 windows 2
+
+define room bedroom3 floor 2 type bedroom house house2 windows 2
+
+define room bathroom1 floor 1 type bathroom house house2 windows 1
+
+define room bathroom2 floor 2 type bathroom house house2 windows 1
+
+        
+
+define occupant martin_fowler type adult
+
+define occupant martha type pet
+
+define occupant judy type child
+
+define occupant jane type adult
+
+define occupant george type adult
+
+define occupant elroy type child
+
+define occupant astro type pet
+
+define occupant grandmother type adult
+
+add occupant martin_fowler to_house house1
+
+add occupant martha to_house house1
+
+add occupant grandmother to_house house1
+
+add occupant judy to_house house2
+
+add occupant jane to_house house2
+
+add occupant george to_house house2
+
+add occupant elroy to_house house2
+
+add occupant astro to_house house2
+
+add occupant grandmother to_house house2
+
+define sensor smoke_detector1_1 type smoke_detector room house1:kitchen
+
+define sensor smoke_detector1_2 type smoke_detector room house1:livingroom
+
+define sensor smoke_detector1_3 type smoke_detector room house1:bedroom1
+
+define sensor smoke_detector1_4 type smoke_detector room house1:bedroom2
+
+define sensor smoke_detector1_5 type smoke_detector room house1:bathroom1
+
+define sensor smoke_detector1_6 type smoke_detector room house1:bathroom2
+
+define sensor smoke_detector2_1 type smoke_detector room house2:kitchen
+
+define sensor smoke_detector2_2 type smoke_detector room house2:livingroom
+
+define sensor smoke_detector2_3 type smoke_detector room house2:diningroom
+
+define sensor smoke_detector2_4 type smoke_detector room house2:bedroom1
+
+define sensor smoke_detector2_5 type smoke_detector room house2:bedroom2
+
+define sensor smoke_detector2_6 type smoke_detector room house2:bedroom3
+
+define sensor smoke_detector2_7 type smoke_detector room house2:bathroom1
+
+define sensor smoke_detector2_8 type smoke_detector room house2:bathroom2
+
+define sensor camera1_1 type camera room house1:kitchen
+
+define sensor camera1_2 type camera room house1:livingroom
+
+define sensor camera1_3 type camera room house1:bedroom1
+
+define sensor camera1_4 type camera room house1:bedroom2
+
+define sensor camera1_5 type camera room house1:bathroom1
+
+define sensor camera1_6 type camera room house1:bathroom2
+
+define sensor camera2_1 type camera room house2:kitchen
+
+define sensor camera2_2 type camera room house2:livingroom
+
+define sensor camera2_3 type camera room house2:diningroom
+
+define sensor camera2_4 type camera room house2:bedroom1
+
+define sensor camera2_5 type camera room house2:bedroom2
+
+define sensor camera2_6 type camera room house2:bedroom3
+
+define sensor camera2_7 type camera room house2:bathroom1
+
+define sensor camera2_8 type camera room house2:bathroom2
+
+define sensor ava1_1 type ava room house1:kitchen
+
+define sensor ava1_2 type ava room house1:livingroom
+
+define sensor ava1_3 type ava room house1:bedroom1
+
+define sensor ava1_4 type ava room house1:bedroom2
+
+define sensor ava1_5 type ava room house1:bathroom1
+
+define sensor ava1_6 type ava room house1:bathroom2
+
+define sensor ava2_1 type ava room house2:kitchen
+
+define sensor ava2_2 type ava room house2:livingroom
+
+define sensor ava2_3 type ava room house2:diningroom
+
+define sensor ava2_4 type ava room house2:bedroom1
+
+define sensor ava2_5 type ava room house2:bedroom2
+
+define sensor ava2_6 type ava room house2:bedroom3
+
+define sensor ava2_7 type ava room house2:bathroom1
+
+define sensor ava2_8 type ava room house2:bathroom2
+
+define appliance thermostat1_1 type thermostat room house1:kitchen
+
+define appliance thermostat1_2 type thermostat room house1:livingroom
+
+define appliance thermostat1_3 type thermostat room house1:bedroom1
+
+define appliance thermostat1_4 type thermostat room house1:bedroom2
+
+define appliance thermostat1_5 type thermostat room house1:bathroom1
+
+define appliance thermostat1_6 type thermostat room house1:bathroom2
+
+define appliance thermostat2_1 type thermostat room house2:kitchen
+
+define appliance thermostat2_2 type thermostat room house2:livingroom
+
+define appliance thermostat2_3 type thermostat room house2:diningroom
+
+define appliance thermostat2_4 type thermostat room house2:bedroom1
+
+define appliance thermostat2_5 type thermostat room house2:bedroom2
+
+define appliance thermostat2_6 type thermostat room house2:bedroom3
+
+define appliance thermostat2_7 type thermostat room house2:bathroom1
+
+define appliance thermostat2_8 type thermostat room house2:bathroom2
+
+define appliance window1_1_1 type window room house1:kitchen
+
+define appliance window1_1_2 type window room house1:kitchen
+
+define appliance window1_2_1 type window room house1:livingroom
+
+define appliance window1_2_2 type window room house1:livingroom
+
+define appliance window1_2_3 type window room house1:livingroom
+
+define appliance window1_2_4 type window room house1:livingroom
+
+define appliance window1_3_1 type window room house1:bedroom1
+
+define appliance window1_3_2 type window room house1:bedroom1
+
+define appliance window1_3_3 type window room house1:bedroom1
+
+define appliance window1_4_1 type window room house1:bedroom2
+
+define appliance window1_4_2 type window room house1:bedroom2
+
+define appliance window1_6_1 type window room house1:bathroom2
+
+define appliance window2_1_1 type window room house2:kitchen
+
+define appliance window2_2_1 type window room house2:livingroom
+
+define appliance window2_2_2 type window room house2:livingroom
+
+define appliance window2_3_1 type window room house2:diningroom
+
+define appliance window2_3_2 type window room house2:diningroom
+
+define appliance window2_4_1 type window room house2:bedroom1
+
+define appliance window2_4_2 type window room house2:bedroom1
+
+define appliance window2_4_3 type window room house2:bedroom1
+
+define appliance window2_4_4 type window room house2:bedroom1
+
+define appliance window2_5_1 type window room house2:bedroom2
+
+define appliance window2_5_2 type window room house2:bedroom2
+
+define appliance window2_6_1 type window room house2:bedroom3
+
+define appliance window2_6_2 type window room house2:bedroom3
+
+define appliance window2_7_1 type window room house2:bathroom1
+
+define appliance window2_8_1 type window room house2:bathroom2
+
+define appliance door1_1 type door room house1:kitchen
+
+define appliance door1_2 type door room house1:livingroom
+
+define appliance door1_3 type door room house1:bedroom1
+
+define appliance door1_4 type door room house1:bedroom2
+
+define appliance door1_5 type door room house1:bathroom1
+
+define appliance door1_6 type door room house1:bathroom2
+
+define appliance door2_1 type door room house2:kitchen
+
+define appliance door2_2 type door room house2:livingroom
+
+define appliance door2_3 type door room house2:diningroom
+
+define appliance door2_4 type door room house2:bedroom1
+
+define appliance door2_5 type door room house2:bedroom2
+
+define appliance door2_6 type door room house2:bedroom3
+
+define appliance door2_7 type door room house2:bathroom1
+
+define appliance door2_8 type door room house2:bathroom2
+
+define appliance light1_1 type light room house1:kitchen
+
+define appliance light1_2 type light room house1:livingroom
+
+define appliance light1_3 type light room house1:bedroom1
+
+define appliance light1_4 type light room house1:bedroom2
+
+define appliance light1_5 type light room house1:bathroom1
+
+define appliance light1_6 type light room house1:bathroom2
+
+define appliance light2_1 type light room house2:kitchen
+
+define appliance light2_2 type light room house2:livingroom
+
+define appliance light2_3 type light room house2:diningroom
+
+define appliance light2_4 type light room house2:bedroom1
+
+define appliance light2_5 type light room house2:bedroom2
+
+define appliance light2_6 type light room house2:bedroom3
+
+define appliance light2_7 type light room house2:bathroom1
+
+define appliance light2_8 type light room house2:bathroom2
+
+* tv (channel, power, volume)
+
+define appliance tv1_2 type tv room house1:livingroom
+
+define appliance tv1_3 type tv room house1:bedroom1
+
+define appliance tv1_4 type tv room house1:bedroom2
+
+define appliance light2_1 type light room house2:kitchen
+
+define appliance light2_2 type light room house2:livingroom
+
+define appliance light2_4 type light room house2:bedroom1
+
+define appliance light2_5 type light room house2:bedroom2
+
+define appliance light2_6 type light room house2:bedroom3
+
+* pandora (channel, power, volume)
+
+define appliance pandora1_1 type pandora room house1:kitchen
+
+define appliance pandora1_2 type pandora room house1:livingroom
+
+define appliance pandora1_3 type pandora room house1:bedroom1
+
+define appliance pandora1_4 type pandora room house1:bedroom2
+
+define appliance pandora1_5 type pandora room house1:bathroom1
+
+define appliance pandora1_6 type pandora room house1:bathroom2
+
+define appliance pandora2_1 type pandora room house2:kitchen
+
+define appliance pandora2_2 type pandora room house2:livingroom
+
+define appliance pandora2_3 type pandora room house2:diningroom
+
+define appliance pandora2_4 type pandora room house2:bedroom1
+
+define appliance pandora2_5 type pandora room house2:bedroom2
+
+define appliance pandora2_6 type pandora room house2:bedroom3
+
+define appliance pandora2_7 type pandora room house2:bathroom1
+
+define appliance pandora2_8 type pandora room house2:bathroom2
+
+define appliance oven1_1 type oven room house1:kitchen energy-use 500
+
+define appliance oven2_1 type oven room house1:kitchen energy-use 700
+
+define appliance refrigerator1_1 type refrigerator room house1:kitchen energy-use 100
+
+define appliance refrigerator2_1 type refrigerator room house2:kitchen energy-use 100
+
+set  appliance house1:kitchen:oven1_1 status power value on
+
+set  appliance house1:kitchen:oven1_1 status temperature value 350
+
+show  appliance house1:kitchen:oven1_1 status temperature  
+350
+
+        
+
+show  appliance house1:kitchen:oven1_1 
+oven1_1: {temperature: 350 power: on }
+
+         
+
+set sensor house1:kitchen:smoke_detector1_1 status fire value on
+Adjusted light power to on
+fire in the kitchen, leave house now -> occupants notified
+fire alert -> 911 notified
+
+show  sensor house1:kitchen:smoke_detector1_1 
+smoke_detector1_1: {fire: on }
+
+set sensor house2:livingroom:camera2_2 status occupant_detected value jane
+Adjusted light power to on
+Adjusted thermostat temperature to higher
+Set jane as is_in house2:livingroom
+
+set sensor house2:livingroom:camera2_2 status occupant_active value jane
+Set jane as is active
+
+set sensor house2:livingroom:camera2_2 status occupant_detected value elroy
+Adjusted light power to on
+Adjusted thermostat temperature to higher
+Set elroy as is_in house2:livingroom
+
+set sensor house2:livingroom:camera2_2 status occupant_inactive value elroy
+Set elroy as is inactive
+
+set sensor house2:livingroom:ava2_2 status voice_command value lights_on
+Adjusted light power to on
+
+set sensor house2:livingroom:ava2_2 status voice_command value where:is:jane
+jane is_in house2:livingroom. -> occupants notified
+
+        
+
+set appliance house1:livingroom:tv1_2 status power value on
+
+set appliance house1:livingroom:tv1_2 status channel value 500
+
+show configuration
+house2: {bedroom3: {window2_6_2: {} smoke_detector2_6: {} door2_6: {} window2_6_1: {} camera2_6: {} thermostat2_6: {} ava2_6: {} light2_6: {} pandora2_6: {} } bedroom2: {smoke_detector2_5: {} door2_5: {} window2_5_1: {} window2_5_2: {} thermostat2_5: {} pandora2_5: {} ava2_5: {} light2_5: {} camera2_5: {} } bedroom1: {window2_4_4: {} door2_4: {} smoke_detector2_4: {} window2_4_1: {} window2_4_2: {} window2_4_3: {} thermostat2_4: {} ava2_4: {} pandora2_4: {} camera2_4: {} light2_4: {} } diningroom: {door2_3: {} smoke_detector2_3: {} pandora2_3: {} window2_3_1: {} window2_3_2: {} thermostat2_3: {} ava2_3: {} camera2_3: {} light2_3: {} } livingroom: {light2_2: {power: on } pandora2_2: {} window2_2_2: {} thermostat2_2: {temperature: higher } ava2_2: {voice_command: where:is:jane } window2_2_1: {} camera2_2: {occupant_detected: elroy occupant_active: jane occupant_inactive: elroy } smoke_detector2_2: {} door2_2: {} } bathroom1: {window2_7_1: {} door2_7: {} smoke_detector2_7: {} camera2_7: {} thermostat2_7: {} light2_7: {} pandora2_7: {} ava2_7: {} } kitchen: {pandora2_1: {} light2_1: {} refrigerator2_1: {} camera2_1: {} thermostat2_1: {} ava2_1: {} window2_1_1: {} smoke_detector2_1: {} door2_1: {} } bathroom2: {window2_8_1: {} door2_8: {} smoke_detector2_8: {} pandora2_8: {} camera2_8: {} light2_8: {} thermostat2_8: {} ava2_8: {} } }house1: {bedroom2: {door1_4: {} smoke_detector1_4: {} pandora1_4: {} thermostat1_4: {} window1_4_1: {} window1_4_2: {} ava1_4: {} camera1_4: {} tv1_4: {} light1_4: {power: on } } bedroom1: {light1_3: {power: on } pandora1_3: {} window1_3_2: {} thermostat1_3: {} window1_3_3: {} ava1_3: {} window1_3_1: {} tv1_3: {} camera1_3: {} smoke_detector1_3: {} door1_3: {} } livingroom: {pandora1_2: {} light1_2: {power: on } camera1_2: {} thermostat1_2: {} window1_2_3: {} window1_2_4: {} window1_2_1: {} ava1_2: {} window1_2_2: {} tv1_2: {channel: 500 power: on } smoke_detector1_2: {} door1_2: {} } bathroom1: {door1_5: {} smoke_detector1_5: {} thermostat1_5: {} ava1_5: {} pandora1_5: {} camera1_5: {} light1_5: {power: on } } kitchen: {pandora1_1: {} camera1_1: {} light1_1: {power: on } oven1_1: {temperature: 350 power: on } thermostat1_1: {} oven2_1: {} ava1_1: {} refrigerator1_1: {} window1_1_2: {} window1_1_1: {} door1_1: {} smoke_detector1_1: {fire: on } } bathroom2: {smoke_detector1_6: {} door1_6: {} window1_6_1: {} thermostat1_6: {} pandora1_6: {} ava1_6: {} light1_6: {power: on } camera1_6: {} } }
+
+ 
+
+show configuration house1
+house1: {bedroom2: {door1_4: {} smoke_detector1_4: {} pandora1_4: {} thermostat1_4: {} window1_4_1: {} window1_4_2: {} ava1_4: {} camera1_4: {} tv1_4: {} light1_4: {power: on } } bedroom1: {light1_3: {power: on } pandora1_3: {} window1_3_2: {} thermostat1_3: {} window1_3_3: {} ava1_3: {} window1_3_1: {} tv1_3: {} camera1_3: {} smoke_detector1_3: {} door1_3: {} } livingroom: {pandora1_2: {} light1_2: {power: on } camera1_2: {} thermostat1_2: {} window1_2_3: {} window1_2_4: {} window1_2_1: {} ava1_2: {} window1_2_2: {} tv1_2: {channel: 500 power: on } smoke_detector1_2: {} door1_2: {} } bathroom1: {door1_5: {} smoke_detector1_5: {} thermostat1_5: {} ava1_5: {} pandora1_5: {} camera1_5: {} light1_5: {power: on } } kitchen: {pandora1_1: {} camera1_1: {} light1_1: {power: on } oven1_1: {temperature: 350 power: on } thermostat1_1: {} oven2_1: {} ava1_1: {} refrigerator1_1: {} window1_1_2: {} window1_1_1: {} door1_1: {} smoke_detector1_1: {fire: on } } bathroom2: {smoke_detector1_6: {} door1_6: {} window1_6_1: {} thermostat1_6: {} pandora1_6: {} ava1_6: {} light1_6: {power: on } camera1_6: {} } }
+
+show configuration house1:kitchen
+kitchen: {pandora1_1: {} camera1_1: {} light1_1: {power: on } oven1_1: {temperature: 350 power: on } thermostat1_1: {} oven2_1: {} ava1_1: {} refrigerator1_1: {} window1_1_2: {} window1_1_1: {} door1_1: {} smoke_detector1_1: {fire: on } }
+
+show configuration house1:kitchen:oven1_1
+oven1_1: {temperature: 350 power: on }
+
+show energy-use  
+house2:100 house1:1300 
+
+         
+
+show energy-use house1
+1300
+
+show energy-use house1:kitchen
+1300
+
+show energy-use house1:kitchen:oven1_1
+500

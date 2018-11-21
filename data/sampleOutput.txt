@@ -1,0 +1,103 @@
+javac housemate/src/knowledge/engine/*.java housemate/src/housemate/test/*.java
+javac housemate/src/housemate/entitlement/*.java housemate/src/housemate/model/*.java housemate/src/housemate/controller/*.java housemate/src/housemate/test/*.java
+java -cp . housemate.src.housemate.test.TestDriver housemate/data/housesetup.txt
+
+============ Output ============
+
+define_permission, user_admin, “user administrator”, “create, update, delete users”
+
+define_permission, control_oven, “control oven”, “full control of oven”
+
+define_permission, control_thermostat, “control thermostat”, “full control of thermostat”
+
+define_permission, control_door, “control door”, “full control of door”
+
+define_permission, control_window, “control window”, “full control of window”
+
+define_role, adult_resident, “adult resident role”, “has all permissions of an adult resident”
+
+define_role, child_resident, “child resident role”, “has all permissions of a child resident”
+
+define_role, admin_role, “admin role”, “has all permissions of an administrator”
+
+add_entitlement_to_role, admin_role, control_thermostat add_entitlement_to_role, admin_role, control_door add_entitlement_to_role, admin_role, control_window
+
+add_entitlement_to_role, adult_resident, control_oven add_entitlement_to_role, adult_resident, control_thermostat add_entitlement_to_role, adult_resident, control_door add_entitlement_to_role, adult_resident, control_window add_entitlement_to_role, child_resident, control_door add_entitlement_to_role, child_resident, control_window
+
+create_user, sam, sam
+
+create_user, jimmy, jimmy
+
+create_user, debra, “debra smart”
+
+add_user_credential, sam, voice_print, --sam--
+
+add_user_credential, jimmy, voice_print, --jimmy--
+
+add_user_credential, debra, password, secret
+
+add_role_to_user debra, admin_role
+
+create_resource_role, house1_child_resident, child_resident, house1
+
+create_resource_role, house1_adult_resident, adult_resident, house1
+
+​# add resource role to user
+
+add_resource_role_to_user, sam, house1_adult_resident
+
+add_resource_role_to_user, jimmy, house1_child_resident
+
+login sam voice_print --sam--
+sam login at: 2018.11.14.23.52.33
+
+define house house1 address 1_story_street_cambridge_ma
+
+define room dining_room1 floor 1 type diningroom house house1 windows 2
+
+define appliance oven1 type oven room house1:dining_room1
+
+define appliance thermostat1 type thermostat  room house1:dining_room1
+
+define appliance door1 type door room house1:dining_room1
+
+define appliance light1 type light room house1:dining_room1
+
+define sensor ava2 type ava room house1:dining_room1
+
+define appliance door1 type door room house1:dining_room1
+
+define appliance light1 type light room house1:dining_room1
+
+set appliance house1:dining_room1:door1 status open value open
+
+set appliance house1:dining_room1:light1 status power value on
+
+set appliance house1:dining_room1:thermostat1 status power value on
+
+set appliance house1:dining_room1:oven1 status power value on
+
+set appliance house1:dining_room1:oven1 status temperature value 150
+
+show configuration house1
+house1: {dining_room1: {oven1: {temperature: 150 power: on } thermostat1: {power: on } door1: {open: open } light1: {power: on } ava2: {} } }
+
+logout
+sam logout at: 2018.11.14.23.52.33
+
+show configuration house1
+Invalid Access
+
+
+login debra password wrong_password
+Password/VoicePrint doesn't match
+
+show configuration house1
+Invalid Access
+
+
+login debra password secret
+debra login at: 2018.11.14.23.52.33
+
+show configuration house1
+house1: {dining_room1: {oven1: {temperature: 150 power: on } thermostat1: {power: on } door1: {open: open } light1: {power: on } ava2: {} } }

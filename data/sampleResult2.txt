@@ -1,0 +1,21 @@
+javac housemate/src/knowledge/engine/*.java housemate/src/knowledge/test/*.java
+java -cp . housemate.src.test.TestDriver inputTriples2.nt sampleQuery2.nt
+
+============ Output ============
+? plays_sport Basketball.
+kyrie plays_sport basketball.
+james plays_sport basketball.
+
+? locates_in ?.
+td_garden locates_in boston.
+gillette_stadium locates_in foxborough.
+
+? ? ?.
+kyrie plays_sport basketball.
+td_garden locates_in boston.
+gillette_stadium locates_in foxborough.
+td_garden hosts basketball.
+tom plays_sport football.
+james plays_sport basketball.
+td_garden hosts hockey.
+gillette_stadium hosts football.
