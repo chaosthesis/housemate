@@ -100,13 +100,13 @@ The following use case diagram shows the use cases supported by the Housemate En
 
 The following class diagram defines the Housemate Entitlement Service classes contained in the package "housemate.src.housemate.entitlement".
 
-![Housemate Entitlement Class Diagram](https://raw.githubusercontent.com/honchao-w/housemate/master/images/controller-classes.jpg)
+![Housemate Entitlement Class Diagram](https://raw.githubusercontent.com/honchao-w/housemate/master/images/entitlement-classes.png)
 
 ### Sequence Diagram
 
 The following sequence diagram describes the interaction between the Entitlement Service and the Model Service.
 
-![Housemate Entitlement Sequence Diagram](https://raw.githubusercontent.com/honchao-w/housemate/master/images/controller-sequence.jpg)
+![Housemate Entitlement Sequence Diagram](https://github.com/honchao-w/housemate/blob/master/images/entitlement-sequence.png)
 
 ## Class Dictionary
 
